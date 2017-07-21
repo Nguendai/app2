@@ -6,7 +6,7 @@
 	
 	<link type="text/css" rel="stylesheet" href="<?php echo 'asset/css/bootstrap.min.css';?>" />
 	<link type="text/css" rel="stylesheet" href="<?php echo 'asset/css/style.css';?>" />
-	<link type="text/css" rel="stylesheet" href="<?php echo 'css/sweetalert.css';?>" />
+	<link type="text/css" rel="stylesheet" href="<?php echo 'asset/sweetalert/dist/sweetalert.css';?>" />
 </head>
 <body>
 <div class="container"  ng-controller="MembersControll">
@@ -60,7 +60,7 @@
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-3 control-label">Age</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" max="99" id="age" name="age" ng-model="membera.age"  required  placeholder="Please,Enter Age" >
+							<input type="number" class="form-control" max="99" id="age" name="age" ng-model="membera.age"  ng-required="true"  placeholder="Please,Enter Age" >
 							<span id="helpBlock2" class="help-block" ng-show="member.age.$error.required"  >Please,Enter Age</span>
 							<span id="helpBlock2" class="help-block" ng-show="member.age.$error.max " >Please,Enter1 Age</span>
 						</div>
@@ -77,11 +77,10 @@
 						<label for="inputEmail3" class="col-sm-3 control-label">Image</label>
 						<div class="col-sm-9">
 							<input type="file" ng-model="file" id="file" valid-file=".jpeg,.gif,.png" validFile class="form-control" name="file">
-							<span id="helpBlock2" class="help-block" ng-show="member.image.$error.size">Error</span>
-							<span id="helpBlock2" class="help-block" ng-show="member.image.$error.extension">Error</span>
+							<span id="helpBlock2" class="help-block" ng-show="member.file.$error.size">Image size 10mb</span>
+							<span id="helpBlock2" class="help-block" ng-show="member.file.$error.extension">NOt Images</span>
 						</div>
 					</div>
-					
 				</form>
 			  </div>
 			  <div class="modal-footer">
@@ -95,19 +94,10 @@
 	<script type="text/javascript" src="<?php echo 'asset/js/jquery.min.js';?>"></script>
 	<script type="text/javascript" src="<?php echo 'asset/js/bootstrap.min.js';?>"></script>
 	<script type="text/javascript" src="<?php echo 'app/lib/angular.min.js';?>"></script> 
-	<script type="text/javascript" src="<?php echo 'app/lib/sweetalert-dev.min.js';?>"></script> 
+	<script type="text/javascript" src="<?php echo 'asset/sweetalert/dist/sweetalert.min.js';?>"></script> 
 	<script type="text/javascript" src="<?php echo 'app/app.js';?>"></script>
-	<script type="text/javascript" src="<?php echo 'app/validator/fileValidate.js';?>"></script>
-  
-	<!-- <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script> --> 	 
-
-<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
 	
-	<!-- <script type="text/javascript">
-	$(document).ready( function () {
-	    $('#table_id').DataTable();
-		} );
-	</script>
-	 -->
+	
+	
 </body>
 </html>
