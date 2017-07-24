@@ -18,7 +18,8 @@ class MembersControll extends Controller
       }else if($req->address=="undefined"){
         return "address";
       }
-      if($req->file('file')){            
+      if($req->file('file')){ 
+            
   	    $file=$req->file;
         $validate=Validator::make($req->all(),
         [
@@ -29,9 +30,7 @@ class MembersControll extends Controller
            'file.max'=>'Max size is 10mb',
         ]);
         if($validate->fails()){
-          return response()->json([
-            'error' => $validate,
-          ]);
+          return "errors";
         }
         $path = 'upload/images';
         $fileName = time()."-".$file->getClientOriginalName();
@@ -68,19 +67,15 @@ class MembersControll extends Controller
       }
       
       if($req->file('file')){
+          return 'a';
          $file=$req->file;
           $validate=Validator::make($req->all(),
           [
            'file' =>'required|mimes:png,gif,jpg,jpeg|max:10000',
-          ],
-          [   
-           'file.required'=>'Please,Enter file',
-           'file.mimes'=>"Do not images",
-           'file.max'=>'Max size is 10mb',
           ]);
           if($validate->fails()){
           return "errors";
-        }
+          }
          $path = 'upload/images';
          $fileName = time()."-".$file->getClientOriginalName();
          $file->move($path , $fileName); 

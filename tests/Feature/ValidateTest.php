@@ -112,5 +112,4 @@ class ValidateTest extends TestCase
 
     }
 
-
 }

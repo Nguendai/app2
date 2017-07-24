@@ -57,11 +57,11 @@
 							<span id="helpBlock2" class="help-block" ng-show="member.name.$error.maxlength ">Name must be less than 100 char</span>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group"  >
 						<label for="inputEmail3" class="col-sm-3 control-label">Age</label>
 						<div class="col-sm-9">
 							<input type="number" class="form-control" max="99" id="age" name="age" ng-model="membera.age"  ng-required="true"  placeholder="Please,Enter Age" >
-							<span id="helpBlock2" class="help-block" ng-show="member.age.$error.required"  >Please,Enter Age</span>
+							<span id="helpBlock2" class="help-block" ng-show="member.age.$error.required "  >Please,Enter Age</span>
 							<span id="helpBlock2" class="help-block" ng-show="member.age.$error.max " >Please,Enter1 Age</span>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 				</form>
 			  </div>
 			  <div class="modal-footer">
-				<button type="button" class="btn btn-primary" ng-disabled="member.$invalid" ng-click="save(state,membera.id)">Save</button>
+				<button type="button" class="btn btn-primary"  ng-disabled="member.$invalid" ng-click="save(state,membera.id,$event);$event.stopPropagation()">Save</button>
 			  </div>
 			</div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
@@ -96,6 +96,7 @@
 	<script type="text/javascript" src="<?php echo 'app/lib/angular.min.js';?>"></script> 
 	<script type="text/javascript" src="<?php echo 'asset/sweetalert/dist/sweetalert.min.js';?>"></script> 
 	<script type="text/javascript" src="<?php echo 'app/app.js';?>"></script>
+	<script type="text/javascript" src="<?php echo 'app/validator/fileValidate.js';?>"></script>
 	
 	
 	

@@ -40,35 +40,43 @@ app.controller('MembersControll',function($scope,$http){
 		$('#myModal').modal('show');
 	}
 	
-	$scope.save= function(state,id){
+	$scope.save= function(state,id,event){
 		if(state=="add"){
-			var file=document.getElementById('file');
-			var data=new FormData();
-			data.append('age',$scope.membera.age);
-			data.append('address',$scope.membera.address);
-			data.append('name',$scope.membera.name);
-			data.append('file',file.files[0]);
-			$http({
-				method:'POST',
-				data:data,
-				url:'http://localhost/test2/public/add',
-				headers :{'Content-Type':undefined}
-			}).then(function(reponse){
-				if(reponse.data=="name"){
-					sweetAlert("Error", "Name Errors", "error");				
-				}else if(reponse.data=="age"){
-					sweetAlert("Error", "Age Errors", "error");
-				}else if(reponse.data=="address"){
-					sweetAlert("Error", "Address Errors", "error");
-				}else{
-					$('#myModal').modal('hide');
-					$scope.members = reponse.data;
-					sweetAlert("Success", "New member was added!", "success");
-				}
-			},function(error){
-				console.log(error);
-			});
+			event.stopPropagation();
+				var file=document.getElementById('file');
+				var data=new FormData();
+				data.append('age',$scope.membera.age);
+				data.append('address',$scope.membera.address);
+				data.append('name',$scope.membera.name);
+				data.append('file',file.files[0]);
+				// $scope.member.$invalid==true;
+				$http({
+					method:'POST',
+					data:data,
+					url:'http://localhost/test2/public/add',
+					headers :{'Content-Type':undefined}
+				}).then(function(reponse){
+					// console.log(reponse.data);
+					if(reponse.data=="name"){
+						sweetAlert("Error", "Name Errors", "error");				
+					}else if(reponse.data=="age"){
+						sweetAlert("Error", "Age Errors", "error");
+					}else if(reponse.data=="address"){
+						sweetAlert("Error", "Address Errors", "error");
+					}else if(reponse.data=="errors"){
+						sweetAlert("Error", "Imange Errors", "error");
+					}else{
+						$('#myModal').modal('hide');
+						$scope.members = reponse.data;
+						sweetAlert("Success", "New member was added!", "success");
+					}
+				},function(error){
+					console.log(error);
+				});
+			// }
 		}
+
+		$scope.member.$invalid=true;
 		if(state=="edit"){
 			var file=document.getElementById('file');
 			var data=new FormData();
@@ -116,5 +124,6 @@ app.controller('MembersControll',function($scope,$http){
 		}
 
 	}
+
 	
 });

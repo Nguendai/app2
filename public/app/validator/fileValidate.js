@@ -10,7 +10,7 @@ app.directive('validFile', function () {
                 scope.$apply();
             });
     	ngModel.$validators.size = function () {
-                console.log(scope.file);
+                // console.log(scope.file);
             	if (scope.file) {
             		if (scope.file.size > 100000) {
 	            		return false;
